@@ -1,0 +1,100 @@
+/********** Template CSS **********/
+:root {
+    --primary: #ff6600;
+    --secondary: #f6f61b;
+    --light: #fefeed;
+    --dark: #091E3E;
+}
+
+/*** Carousel ***/
+.carousel-caption {
+    position: absolute;
+    height: 550px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0);
+    z-index: 0;
+}
+
+/*** Section Title ***/
+.section-title::before {
+    position: absolute;
+    content: "";
+    width: 150px;
+    height: 5px;
+    left: 0;
+    bottom: 0;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+}
+
+.section-title.text-center::before {
+    left: 50%;
+    margin-left: -75px;
+}
+
+.section-title.sm::before {
+    width: 90px;
+    height: 4px;
+    left:50%;
+    transform: translate(-50%);
+}
+
+
+@media (min-width: 767.98px) {
+    .footer-about {
+        margin-bottom: -75px;
+    }
+}
+
+.bg {
+    min-height: calc(100vh - 120px);
+    background-repeat: repeat;
+    background-size: 800px 800px;
+    background-position: center;
+    padding-bottom: 100px;
+}
+
+
+.custom-file-input {
+    color: transparent;
+    max-width: 135px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Select some files';
+    display: inline-block;
+    color: #ffffff;
+    outline: none;
+    margin-top: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.custom-file-input:active {
+    outline: 0;
+}
+
+.loading{
+    width: 100%;
+    height: 100%;
+    top:0px;
+    position: fixed;
+    z-index: 100;
+    overflow: hidden;
+    background-color: rgba(48, 48, 48, 0.176);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading svg {
+    width: 100px;
+    height: 100px;
+}
