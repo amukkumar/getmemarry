@@ -151,7 +151,7 @@ const RegisterFull = () => {
             mothertongue: "",
             caste: "",
             nocaste: false,
-            country: "IN",
+            country: "IN##+91",
             mobile: "",
             state: "",
             city: "",
@@ -238,8 +238,8 @@ const RegisterFull = () => {
     }
 
     const doRegister = (values) => {
+
         let formData = new FormData();
-        formData.append('profile_created', "");
         formData.append('txtfirstname', values.firstname);
         formData.append('txtlastname', values.lastname);
         formData.append('txtgender', values.gender);
@@ -253,11 +253,13 @@ const RegisterFull = () => {
         formData.append('txtreligion', values.religion);
         formData.append('txtmother_tongue', values.mothertongue);
         formData.append('txtcaste', values.caste);
+        formData.append('txtcastenobar', values.nocaste ? 1 : 0);
         formData.append('txtfrom', values.country);
         formData.append('txtstateuser', values.state);
         formData.append('txtcityuser', values.city);
         formData.append('txtqualification', values.qualification);
-        formData.append('txtoccupation', values.workingat);
+        formData.append('txtoccupation', values.employedin);
+        formData.append('txtin', values.workingat);
         formData.append('txtprofessional_str', values.profession);
         formData.append('txtincome', values.annualincome);
         formData.append('txttimezone', "0.0");
@@ -728,8 +730,9 @@ const RegisterFull = () => {
                                                 <FormLabel>Country</FormLabel>
                                                 <Select onValueChange={(code) => {
                                                     field.onChange(code);
-                                                    getState(code);
-                                                    setDCity(code == "IN" ? false : true);
+                                                    getState(code.match(/^[A-Z]+/)[0]);
+                                                    setDCity(code == "IN##+91" ? false : true);
+                                                    if (code !== "IN") { setValue('state', "", { shouldValidate: true }); setState([]) }
                                                     if (code !== "IN") { setValue('city', "", { shouldValidate: true }); setCity([]) }
                                                 }} defaultValue={field.value}>
                                                     <FormControl>
@@ -739,7 +742,7 @@ const RegisterFull = () => {
                                                     </FormControl>
                                                     <SelectContent>
                                                         {country?.map((item, index) => (
-                                                            <SelectItem key={index} value={item.code}>
+                                                            <SelectItem key={index} value={item.code + '##' + item.dial_code}>
                                                                 {item.name + " " + item.dial_code}
                                                             </SelectItem>
                                                         ))}
@@ -772,7 +775,7 @@ const RegisterFull = () => {
                                                 <FormLabel>State</FormLabel>
                                                 <Select onValueChange={(code) => {
                                                     field.onChange(code);
-                                                    getCity(getValues('country'), code);
+                                                    getCity(getValues('country').match(/^[A-Z]+/)[0], code);
                                                 }} defaultValue={field.value}>
                                                     <FormControl>
                                                         <SelectTrigger>

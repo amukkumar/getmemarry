@@ -352,11 +352,11 @@ const Profile = () => {
                                         </TableRow>
                                         <TableRow className="odd:bg-white even:bg-slate-50">
                                             <TableCell className="font-sm p-1 pl-5 w-[200px] font-semibold">Employed In:</TableCell>
-                                            <TableCell className="font-sm p-1">{profile?.data?.employed_in}</TableCell>
+                                            <TableCell className="font-sm p-1">{profile?.data.occupation}-{profile?.data?.employed_in}</TableCell>
                                         </TableRow>
                                         <TableRow className="odd:bg-white even:bg-slate-50">
                                             <TableCell className="font-sm p-1 pl-5 w-[200px] font-semibold">Profession:</TableCell>
-                                            <TableCell className="font-sm p-1">{profile?.data?.profession_str}</TableCell>
+                                            <TableCell className="font-sm p-1">{profile?.data?.professional_str}</TableCell>
                                         </TableRow>
                                         <TableRow className="odd:bg-white even:bg-slate-50">
                                             <TableCell className="font-sm p-1 pl-5 w-[200px] font-semibold">Annual income:</TableCell>
@@ -420,11 +420,11 @@ const Profile = () => {
                                         </TableRow>
                                         <TableRow className="odd:bg-white even:bg-slate-50">
                                             <TableCell className="font-sm p-1 pl-5 w-[200px] font-semibold">Brother(s):</TableCell>
-                                            <TableCell className="font-sm p-1">{profile?.data?.brother}</TableCell>
+                                            <TableCell className="font-sm p-1">{profile?.data?.brother}  in which married: {profile?.data.brother_cases}</TableCell>
                                         </TableRow>
                                         <TableRow className="odd:bg-white even:bg-slate-50">
                                             <TableCell className="font-sm p-1 pl-5 w-[200px] font-semibold">Sister(s):</TableCell>
-                                            <TableCell className="font-sm p-1">{profile?.data?.sister}</TableCell>
+                                            <TableCell className="font-sm p-1">{profile?.data?.sister}  in which married: {profile?.data.sister_cases}</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>

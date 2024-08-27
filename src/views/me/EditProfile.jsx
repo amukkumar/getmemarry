@@ -105,9 +105,9 @@ const EditProfile = () => {
 
     const getProfile = () => {
         startLoading();
-        axios.get(apiUrl + 'profile_username.php', {
+        axios.get(apiUrl + 'profile.php', {
             params: {
-                username: user.username,
+                id: user.id,
             }
         })
             .then(function (response) {
@@ -261,7 +261,7 @@ const EditProfile = () => {
         formdata.append('txtbirthcity', values.birthplace);
         formdata.append('txtheight', values.height); // Assuming a default height
         formdata.append('txtgotra', values.gotra);
-        formdata.append('txtspecial_cases', values.specialcases);
+        formdata.append('Special_cases', values.specialcases);
         formdata.append('txthoroscope', values.horoscope);
         formdata.append('txtmanglik', values.manglik);
         formdata.append('txtdiet', values.diet);
@@ -356,7 +356,7 @@ const EditProfile = () => {
     const setData = () => {
         if (profile && Object.keys(profile)?.length > 0) {
             const [year, month, date] = profile.birth_date.split('-');
-            console.log(date)
+            //console.log(date)
             reset({
                 profilecreated: profile.profile_created || "",
                 firstname: profile.firstname || "",
@@ -369,7 +369,7 @@ const EditProfile = () => {
                 complexion: profile.complexion || "",
                 gotra: profile.gotra || "",
                 maritalstatus: profile.maritalstatus || "",
-                height: profile.height || "",
+                height: profile.height_number || "",
                 birthhr: profile.birth_hr || "",
                 birthmin: profile.birth_min || "",
                 birthplace: profile.birth_city || "",
@@ -396,7 +396,7 @@ const EditProfile = () => {
                 address: profile.address_line1 || "",
                 alternatephone: profile.phone || "",
                 qualification: profile.qualification,
-                employedin: profile.employed_in || "",
+                employedin: profile.occupation || "",
                 companyname: profile.employed_in || "",
                 profession: profile.professional_str || "",
                 annualincome: getIncomeKey(profile.income).key || "",
@@ -451,15 +451,11 @@ const EditProfile = () => {
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
-                                                    <SelectItem value="myself">My Self</SelectItem>
+                                                    <SelectItem value="Self">Self</SelectItem>
                                                     <SelectItem value="Parents/Guardian">Parents/Guardian</SelectItem>
-                                                    <SelectItem value="myson">My Son</SelectItem>
-                                                    <SelectItem value="mydaughter">My Daughter</SelectItem>
-                                                    <SelectItem value="mybrother">My Brother</SelectItem>
-                                                    <SelectItem value="mysister">My Sister</SelectItem>
                                                     <SelectItem value="Sibling">Sibling</SelectItem>
-                                                    <SelectItem value="myfriend">My Friend</SelectItem>
-                                                    <SelectItem value="myrelative">My Relative</SelectItem>
+                                                    <SelectItem value="Friends">My Friend</SelectItem>
+                                                    <SelectItem value="Others">Others</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                             <FormMessage />

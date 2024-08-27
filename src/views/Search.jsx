@@ -86,8 +86,8 @@ const formSchema = z.object({
 const Search = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL;
-    const resource = useSelector((state) => state.global.resource.payload);
-    const partner = useSelector((state) => state.global.partner.payload);
+    const resource = useSelector((state) => state.global?.resource?.payload);
+    const partner = useSelector((state) => state.global?.partner?.payload);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { toast } = useToast();

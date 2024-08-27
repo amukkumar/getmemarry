@@ -95,10 +95,10 @@ const Register2 = () => {
         formdata.append('txtcomplexion', values.complexion);
         formdata.append('txtbirthhr', values.birthhr);
         formdata.append('txtbirthmin', values.birthmin);
-        formdata.append('txtbirthcity', values.birthplace);
+        formdata.append('keyword', values.birthplace);
         formdata.append('txtgotra', values.gotra);
         formdata.append('txthoroscope', values.horoscope);
-        formdata.append('txtmanglik', values.manglik);
+        formdata.append('manglik', values.manglik);
         formdata.append('txtdiet', values.diet);
         formdata.append('txtsmoke', values.smoke);
         formdata.append('txtdrink', values.drink);
@@ -109,7 +109,7 @@ const Register2 = () => {
         formdata.append('txtsister', values.sister);
         formdata.append('txtsister_cases', values.sisterwhichmarried);
         formdata.append('txtaddress1', values.address);
-        formdata.append('txtareacode', values.areacode);
+        formdata.append('txtccode', values.areacode);
         formdata.append('txtphone', values.alternatephone);
         formdata.append('about_me', values.about);
 
@@ -204,15 +204,11 @@ const Register2 = () => {
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
-                                                    <SelectItem value="myself">My Self</SelectItem>
+                                                    <SelectItem value="Self">Self</SelectItem>
                                                     <SelectItem value="Parents/Guardian">Parents/Guardian</SelectItem>
-                                                    <SelectItem value="myson">My Son</SelectItem>
-                                                    <SelectItem value="mydaughter">My Daughter</SelectItem>
-                                                    <SelectItem value="mybrother">My Brother</SelectItem>
-                                                    <SelectItem value="mysister">My Sister</SelectItem>
                                                     <SelectItem value="Sibling">Sibling</SelectItem>
-                                                    <SelectItem value="myfriend">My Friend</SelectItem>
-                                                    <SelectItem value="myrelative">My Relative</SelectItem>
+                                                    <SelectItem value="Friends">My Friend</SelectItem>
+                                                    <SelectItem value="Others">Others</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                             <FormMessage />
