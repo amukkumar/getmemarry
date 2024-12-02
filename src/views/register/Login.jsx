@@ -45,7 +45,7 @@ const Login = () => {
     const doLogin = (values) => {
         startLoading();
         const formData = new FormData();
-        formData.append(' txtusername', values.username);
+        formData.append('txtusername', values.username);
         formData.append('txtpassword', values.password);
         axios.post(apiUrl + 'midlogin.php', formData)
             .then(function (response) {

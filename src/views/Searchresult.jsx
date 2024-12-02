@@ -24,9 +24,7 @@ const SearchResult = () => {
 
     const searchProfiles = () => {
         startLoading();
-        const formdata = new FormData();
-        formdata.append("newuserid", "11");
-        axios.post(apiUrl + "newsearch.php", formdata, {
+        axios.post(apiUrl + "newsearch.php", {}, {
             params: {
                 page: page,
                 sort_by: '',

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
 import DownloadDoneOutlinedIcon from '@mui/icons-material/DownloadDoneOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,20 +10,62 @@ import Loading from '../components/global/loading';
 import useLoading from '../hook/loading';
 import { useNavigate } from 'react-router-dom';
 
+
 const Membership = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const token = useSelector((state) => state.global.token);
+    const user = useSelector((state) => state.global.user.payload);
     const { loading, startLoading, stopLoading } = useLoading();
     const [membership, setMembership] = useState({ membership_plans: [] });
+    const [profile, setProfile] = useState({});
+
+    const getProfile = () => {
+        startLoading();
+        axios.get(apiUrl + 'profile.php', {
+            params: {
+                id: user.id,
+            }
+        })
+            .then(function (response) {
+                if (response.status == 200) {
+                    setProfile(response.data);
+                }
+                else {
+                    setProfile(null);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                setProfile(null);
+            })
+            .finally(function () {
+                stopLoading();
+            })
+    }
 
     const handlePayment = (item) => {
         if (token.payload)
-            navigate('/payment', { state: { price: item?.original_pricing } })
+            handleSubmit(item);
         else
             navigate('/login')
     }
+
+    const handleSubmit = (item) => {
+        // Create a query string for the GET request
+        const queryString = new URLSearchParams({
+            txtpromocode: '',
+            txtmembershiptype: item.membership_name,
+            token: token.payload // Ensure this is valid and defined in the scope
+        }).toString();
+
+        // Construct the full URL with the query string
+        const actionUrl = `${apiUrl}getorderid_amuk.php?${queryString}`;
+
+        // Redirect to the URL (GET request)
+        window.location.href = actionUrl;
+    };
 
     const getMembership = () => {
         startLoading();
@@ -50,6 +91,7 @@ const Membership = () => {
 
     useEffect(() => {
         getMembership();
+        getProfile();
     }, [])
     return (
         <div className='bg'>

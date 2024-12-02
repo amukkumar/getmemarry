@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button"
 import axios from 'axios';
 import AvatarPic from './avatar';
 import useLoading from '../../hook/loading';
@@ -19,7 +20,7 @@ const Received = () => {
 
     const getRecieved = () => {
         startLoading();
-        axios.get(apiUrl + 'expIntsent.php', {
+        axios.get(apiUrl + 'showReceivedExpInterest.php', {
             params: {
                 token: user.token,
             }
@@ -27,6 +28,72 @@ const Received = () => {
             .then(function (response) {
                 if (response.status == 200) {
                     setProfile(response.data.data);
+                }
+                else {
+                    toast({
+                        variant: "destructive",
+                        description: response.data.message,
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .finally(function () {
+                stopLoading();
+            });
+    }
+
+    const acceptInterest = (id, listid) => {
+        startLoading();
+        axios.get(apiUrl + 'expInterest.php', {
+            params: {
+                token: user.token,
+                remove: 0,
+                ref_id: id,
+                id: listid,
+            }
+        })
+            .then(function (response) {
+                if (response.status == 200) {
+                    toast({
+                        variant: "success",
+                        description: response.data.message,
+                    })
+                    getRecieved();
+                }
+                else {
+                    toast({
+                        variant: "destructive",
+                        description: response.data.message,
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .finally(function () {
+                stopLoading();
+            });
+    }
+
+    const declineInterest = (id, listid) => {
+        startLoading();
+        axios.get(apiUrl + 'expInterest.php', {
+            params: {
+                token: user.token,
+                remove: 1,
+                ref_id: id,
+                id: listid,
+            }
+        })
+            .then(function (response) {
+                if (response.status == 200) {
+                    toast({
+                        variant: "success",
+                        description: response.data.message,
+                    })
+                    getRecieved();
                 }
                 else {
                     toast({
@@ -57,6 +124,11 @@ const Received = () => {
                             <div className='flex gap-2 items-center'>
                                 <AvatarPic id={item.ref_userid} />
                                 <h1>{item.ref_firstname} ({item.ref_username})</h1>
+                            </div>
+
+                            <div className='flex gap-2'>
+                                <Button className='bg-green-600' onClick={(e) => { e.stopPropagation(); acceptInterest(item.ref_userid, item?.lisid) }}>Accept</Button>
+                                <Button className='bg-red-600 text-white rounded-md p-2' onClick={(e) => { e.stopPropagation(); declineInterest(item.ref_userid, item?.lisid) }}>Decline</Button>
                             </div>
 
                         </CardContent>

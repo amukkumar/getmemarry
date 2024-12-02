@@ -273,7 +273,7 @@ const Search = () => {
                         <Card>
                             <CardContent className="flex gap-3 p-3">
                                 <div className="flex-1">
-                                    <Input value={idValue} onChange={(e) => setIdValue(e.target.value)} type="email" placeholder="Enter Profile ID" />
+                                    <Input value={idValue} onChange={(e) => setIdValue(e.target.value)} type="text" placeholder="Enter Profile ID" />
                                     {idValue.length < 3 ? <p className="text-sm mt-2 text-red-500">Please Enter Name or Profile ID</p> : ""}
                                 </div>
                                 <Button onClick={() => idValue.length > 2 && navigate('/profile/' + idValue)}>FIND<SearchOutlined sx={{ fontSize: "20px", marginLeft: "5px" }} /></Button>

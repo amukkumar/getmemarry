@@ -32,7 +32,6 @@ import Privacy from "./views/Privacy";
 import Termofuse from "./views/Termofuse";
 import Register2 from "./views/register/Register2";
 import UploadProfile from "./views/register/UploadProfile";
-import PaymentForm from "./views/PaymentForm";
 
 
 function App() {
@@ -95,7 +94,6 @@ function App() {
                 <Route exact path='/me/add-horoscope' element={<AddHoroscope />} />
                 <Route exact path='/me/change-password' element={<ChangePassword />} />
                 <Route exact path='/me/sortlist' element={<Sortlist />} />
-                <Route exact path='/payment' element={<PaymentForm />} />
               </> : ""
             }
             <Route exact path="/*" element={<Error404 />} />

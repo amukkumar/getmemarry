@@ -56,7 +56,7 @@ const Register2 = () => {
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            profilecreated: "myself",
+            profilecreated: "Self",
             complexion: "",
             gotra: "",
             birthhr: "",
