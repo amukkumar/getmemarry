@@ -25,7 +25,7 @@ const Membership = () => {
         startLoading();
         axios.get(apiUrl + 'profile.php', {
             params: {
-                id: user.id,
+                id: user?.id,
             }
         })
             .then(function (response) {
